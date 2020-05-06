@@ -25,7 +25,7 @@ export default () => {
         style={{width: '30%', marginBottom: '20px'}}
       >
         <div className="post-title">
-          <h3>{post.title}</h3>
+          <h3>{post.title} (ID: {post.id})</h3>
           <CommentList postId={post.id} />
           <CommentCreate postId={post.id} />
         </div>

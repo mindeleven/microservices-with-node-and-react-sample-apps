@@ -12,7 +12,7 @@ app.get('/posts', (req, res) => {
   res.send(posts);
 });
 
-app.get('/events', (req, res) => {
+app.post('/events', (req, res) => {
   const { type, data } = req.body;
 
   if (type === 'PostCreated') {
@@ -22,11 +22,12 @@ app.get('/events', (req, res) => {
   }
 
   if (type === 'CommentCreated') {
-    const { id, content, postId} = data;
+    const { id, content, postId } = data;
 
-    const post = posts[id];
+    const post = posts[postId];
     post.comments.push({ id, content });
   }
+
   console.log(posts);
   res.send({});
 });
