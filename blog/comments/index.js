@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const commentsByPostId = {};
+const pending = 'pending';
 
 app.get('/posts/:id/comments', (req, res) => {
   res.send(commentsByPostId[req.params.id] || []);
@@ -20,7 +21,7 @@ app.post('/posts/:id/comments', async (req, res) => {
 
   const comments = commentsByPostId[req.params.id] || [];
 
-  comments.push({ id: commentId, content });
+  comments.push({ id: commentId, content, status: pending });
 
   commentsByPostId[req.params.id] = comments;
 
@@ -29,7 +30,8 @@ app.post('/posts/:id/comments', async (req, res) => {
     data: {
       id: commentId,
       content,
-      postId: req.params.id
+      postId: req.params.id,
+      status: pending
     }
   });
 
