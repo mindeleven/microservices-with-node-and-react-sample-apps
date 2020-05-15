@@ -17,7 +17,7 @@ export default ({ comments }) => {
 
     return (
       <li key={comment.id} >
-        {comment}
+        {comment} (ID: {comment.id})
       </li>
     )
   });
